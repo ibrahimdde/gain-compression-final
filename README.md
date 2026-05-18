@@ -5,6 +5,8 @@ FFmpeg Engine'in onlarca, belki yüzlerce parametresiyle kafa karıştıran, CLI
 Görev dağılımı:
 
 -Süleyman Gürbüz: Models altındaki yapı get-set'leri ve ana FFmpeg call'larına yardımcı oldu.
+
 -İbrahim Demir: Ana kodun yazımında rol aldı.
+
 -Eda Zeynep Acar: Avalonia yardımıyla GUI yapımında rol buldu.
 
