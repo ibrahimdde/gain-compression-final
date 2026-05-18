@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FfmpegWrapper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fe7951064631dd54af4acd298ece5cb8dab1b576")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc77b2ac8c8700ce9b818e19cc299cef8e2d8551")]
 [assembly: System.Reflection.AssemblyProductAttribute("FfmpegWrapper")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FfmpegWrapper")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

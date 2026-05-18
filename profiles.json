@@ -1,16 +1,11 @@
 [
   {
-    "Id": "2ed9e9df-62b4-4c31-bdb1-aa2736cba18c",
-    "ProfileName": "Varsay\u0131lan",
+    "Id": "e1e41edf-5490-41a5-9045-462ad5b82de6",
+    "ProfileName": "Test2",
     "Resolution": "1920x1080",
-    "Bitrate": 4000,
-    "Fps": 30
-  },
-  {
-    "Id": "e2d01908-3766-4fbb-a3f6-356bf0199a54",
-    "ProfileName": "D\u00FC\u015F\u00FCk Boyut",
-    "Resolution": "1280x720",
-    "Bitrate": 1500,
-    "Fps": 24
+    "Bitrate": 6000,
+    "Fps": 60,
+    "VideoKodek": "libx264",
+    "HizOnayari": "medium"
   }
 ]
