@@ -1,0 +1,117 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:models="using:FfmpegWrapper.Models"
+        x:Class="FfmpegWrapper.MainWindow"
+        Title="Gain Compression" Height="700" Width="600"
+        WindowStartupLocation="CenterScreen" Background="#f3f4f6" Loaded="Window_Loaded"
+        DragDrop.AllowDrop="True">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+       
+        <Border x:Name="grpFileOps" Grid.Row="0" Margin="0,0,0,15" Padding="10" BorderBrush="Gray" BorderThickness="1" CornerRadius="4">
+            <StackPanel>
+                <TextBlock Text="Dosya Seçimi" FontWeight="Bold" Margin="0,0,0,10"/>
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="txtInputFile" Grid.Column="0" IsReadOnly="True" Margin="0,0,10,0" VerticalContentAlignment="Center"/>
+                    <Button Content="Video Seç" Grid.Column="1" Width="100" Height="30" Click="BtnSelectFile_Click" FontWeight="Normal"/>
+                </Grid>
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="txtOutputDir" Grid.Column="0" IsReadOnly="True" Margin="0,0,10,0" VerticalContentAlignment="Center"/>
+                    <Button Content="Çıktı Klasörü Seç" Grid.Column="1" Width="140" Height="30" Click="BtnSelectOutputDir_Click" FontWeight="Normal"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <Border x:Name="grpProfileOps" Grid.Row="1" Margin="0,0,0,15" Padding="10" BorderBrush="Gray" BorderThickness="1" CornerRadius="4">
+            <StackPanel>
+                <TextBlock Text="Sıkıştırma Ayarları" FontWeight="Bold" Margin="0,0,0,10"/>
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Kayıtlı Profil:" VerticalAlignment="Center" Margin="0,0,10,0" FontWeight="Normal"/>
+                    <ComboBox x:Name="cmbProfiles" Grid.Column="1" Margin="0,0,10,0" SelectionChanged="CmbProfiles_SelectionChanged" FontWeight="Normal">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:CompressionProfile">
+                                <TextBlock Text="{Binding ProfileName}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Content="Yeni" Grid.Column="2" Width="50" Margin="0,0,5,0" Click="BtnNewProfile_Click" FontWeight="Normal"/>
+                    <Button Content="Kaydet" Grid.Column="3" Width="70" Margin="0,0,5,0" Click="BtnSaveProfile_Click" FontWeight="Normal"/>
+                    <Button Content="Sil" Grid.Column="4" Width="40" Click="BtnDeleteProfile_Click" Foreground="Red" FontWeight="Normal"/>
+                </Grid>
+
+                <UniformGrid Columns="2" Rows="6">
+                    <TextBlock Text="Profil Adı:" VerticalAlignment="Center" Margin="5"/>
+                    <TextBox x:Name="txtProfileName" Margin="5" VerticalContentAlignment="Center"/>
+
+                    <TextBlock Text="Çözünürlük (Örn: 1920x1080):" VerticalAlignment="Center" Margin="5"/>
+                    <TextBox x:Name="txtResolution" Margin="5" VerticalContentAlignment="Center"/>
+
+                    <TextBlock Text="Bitrate (kbps - Örn: 2000):" VerticalAlignment="Center" Margin="5"/>
+                    <TextBox x:Name="txtBitrate" Margin="5" VerticalContentAlignment="Center"/>
+
+                    <TextBlock Text="FPS (Örn: 30):" VerticalAlignment="Center" Margin="5"/>
+                    <TextBox x:Name="txtFps" Margin="5" VerticalContentAlignment="Center"/>
+
+                    <TextBlock Text="Video Formatı (Codec):" VerticalAlignment="Center" Margin="5"/>
+                    <ComboBox x:Name="cmbCodec" Margin="5" SelectedIndex="0">
+                        <ComboBoxItem Content="H264 (libx264)"/>
+                        <ComboBoxItem Content="H265 (libx265)"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Sıkıştırma Hızı (Preset):" VerticalAlignment="Center" Margin="5"/>
+                    <ComboBox x:Name="cmbPreset" Margin="5" SelectedIndex="2">
+                        <ComboBoxItem Content="Çok hızlı (ultrafast)"/>
+                        <ComboBoxItem Content="Hızlı (fast)"/>
+                        <ComboBoxItem Content="Normal (medium)"/>
+                        <ComboBoxItem Content="Yavaş (slow)"/>
+                    </ComboBox>
+                </UniformGrid>
+            </StackPanel>
+        </Border>
+
+        
+        <Button x:Name="btnStart" Content="SIKIŞTIRMAYI BAŞLAT" Grid.Row="2" Height="45" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#3b82f6" Foreground="White" FontWeight="Bold" FontSize="15" Click="BtnStart_Click" Margin="0,0,0,15" CornerRadius="5"/>
+
+       
+        <StackPanel Grid.Row="3" Margin="0,0,0,15">
+            <Grid Margin="0,0,0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="txtTime" Text="Geçen süre: 00:00:00" Grid.Column="0" FontWeight="Bold"/>
+                <TextBlock x:Name="txtPercentage" Text="%0.0" Grid.Column="1" HorizontalAlignment="Right" FontWeight="Bold"/>
+            </Grid>
+            <ProgressBar x:Name="progressBar" Height="25" Minimum="0" Maximum="100" Value="0" Foreground="#22c55e" CornerRadius="3"/>
+        </StackPanel>
+
+
+        <Border Grid.Row="4" Padding="5" BorderBrush="Gray" BorderThickness="1" CornerRadius="4">
+            <TextBox x:Name="txtLog" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap" FontFamily="Consolas" FontSize="11" Background="#1e293b" Foreground="#e2e8f0" FontWeight="Normal" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        </Border>
+
+    </Grid>
+</Window>
